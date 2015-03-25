@@ -33,7 +33,24 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('PlaylistsCtrl', function($scope,$cordovaSQLite,$rootScope) {
+      $scope.select = function() {
+        var query = "SELECT product,origin,min_price_our FROM main_table WHERE min_price_our >=5 AND <10";
+        $cordovaSQLite.execute($rootScope.db, query, []).then(function(res) {
+          if(res.rows.length > 0) {
+            console.log(res);
+            for(var i=0;i<res.rows.length;i++){
+              console.log("SELECTED -> " + JSON.stringify(res.rows.item(i)));
+              console.log(i);
+            }
+
+          } else {
+            console.log("No results found");
+          }
+        }, function (err) {
+          console.error(err);
+        });
+      };
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },

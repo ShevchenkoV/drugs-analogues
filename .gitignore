@@ -8,3 +8,4 @@ www/lib/
 www/db/
 platforms/
 .idea/
+main_db.sqlite

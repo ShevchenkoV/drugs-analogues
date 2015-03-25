@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaSQLite,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,6 +17,13 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    //$rootScope.db = $cordovaSQLite.openDB({ name: "main_db.sqlite", createFromLocation: 1 });
+    window.plugins.sqlDB.copy("main_db.sqlite", function() {
+      $rootScope.db = $cordovaSQLite.openDB("main_db.sqlite");
+    }, function(error) {
+      console.error("There was an error copying the database: " + error);
+      $rootScope.db = $cordovaSQLite.openDB("main_db.sqlite");
+    });
   });
 })
 
