@@ -36,7 +36,8 @@ angular.module('starter.controllers', [])
 .controller('PlaylistsCtrl', function($scope,$cordovaSQLite,$rootScope) {
     $scope.result=[];
       $scope.select = function(string) {
-        var query = "SELECT product,origin,min_price_our FROM main_table WHERE product LIKE ? LIMIT 3";
+        $scope.result.length=0;
+        var query = "SELECT name,origin,min_price_our FROM products WHERE name LIKE ? LIMIT 3";
         $cordovaSQLite.execute($rootScope.db, query, ['%'+string+'%']).then(function(res) {
           if(res.rows.length > 0) {
             console.log(res);

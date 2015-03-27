@@ -17,12 +17,11 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    //$rootScope.db = $cordovaSQLite.openDB({ name: "main_db.sqlite", createFromLocation: 1 });
-    window.plugins.sqlDB.copy("main_db.sqlite", function() {
-      $rootScope.db = $cordovaSQLite.openDB("main_db.sqlite");
+    window.plugins.sqlDB.copy("lower.sqlite", function() {
+      $rootScope.db = $cordovaSQLite.openDB("lower.sqlite");
     }, function(error) {
       console.error("There was an error copying the database: " + error);
-      $rootScope.db = $cordovaSQLite.openDB("main_db.sqlite");
+      $rootScope.db = $cordovaSQLite.openDB("lower.sqlite");
     });
   });
 })
