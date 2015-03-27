@@ -34,16 +34,17 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope,$cordovaSQLite,$rootScope) {
-      $scope.select = function() {
-        var query = "SELECT product,origin,min_price_our FROM main_table WHERE min_price_our >=5 AND <10";
-        $cordovaSQLite.execute($rootScope.db, query, []).then(function(res) {
+    $scope.result=[];
+      $scope.select = function(string) {
+        var query = "SELECT product,origin,min_price_our FROM main_table WHERE product LIKE ? LIMIT 3";
+        $cordovaSQLite.execute($rootScope.db, query, ['%'+string+'%']).then(function(res) {
           if(res.rows.length > 0) {
             console.log(res);
             for(var i=0;i<res.rows.length;i++){
               console.log("SELECTED -> " + JSON.stringify(res.rows.item(i)));
-              console.log(i);
+              $scope.result.push(JSON.stringify(res.rows.item(i)));
             }
-
+            console.log($scope.result);
           } else {
             console.log("No results found");
           }
