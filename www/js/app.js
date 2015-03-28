@@ -40,7 +40,8 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     url: "/search",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/search.html",
+        controller: 'SearchCtrl'
       }
     }
   })
@@ -64,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: "/search/:id",
     views: {
       'menuContent': {
         templateUrl: "templates/playlist.html",

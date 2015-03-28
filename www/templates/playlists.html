@@ -1,21 +1,9 @@
 <ion-view view-title="Playlists">
   <ion-content>
-    <label class="item item-input">
-      <i class="icon ion-search placeholder-icon"></i>
-      <input type="search" placeholder="Search" ng-model="string" ng-minlength="4" ng-change="select(string);">
-    </label>
-
-    <ion-list>
-      <ion-item ng-repeat="i in result track by $index">
-        {{i}}
-      </ion-item>
-    </ion-list>
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
       </ion-item>
     </ion-list>
-    <button value="select" ng-click="select()"></button>
-
   </ion-content>
 </ion-view>
